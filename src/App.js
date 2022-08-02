@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./component/Home";
 import Registration from './component/Registration';
+import DirectLogin from './component/DirectLogin';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +18,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home register="false" />} />
         <Route path="/register" element={<Registration />} />
+
+        <Route path="/directlogin" element={<DirectLogin />} />
       </Routes>
     </Router>
   </div>

@@ -38,6 +38,7 @@ export default function Registration() {
                 body: JSON.stringify(form)
             }).then(response => {
                 console.log(response);
+                navigate('/directlogin', { state: {  userName: form.username, name: form.firstName } })
               })
               .catch(error => {
                 console.log(error)
