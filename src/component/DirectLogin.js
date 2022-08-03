@@ -8,9 +8,8 @@ import "../styles/Login.css"
 export default function DirectLogin() {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    const [result, setreslut] = useState([true,''])
     const navigate = useNavigate();
-    const location=useLocation();
+
     const handleSubmit = (e) => {
         e.preventDefault()
         let uid = ''
@@ -26,26 +25,21 @@ export default function DirectLogin() {
                 response.text().
                 then((body)=>{
                     let jwt1='Bearer '+body;
-                    let flag=true;
-                    setreslut([flag,jwt1])
-                   // console.log("result ",result);
+                    localStorage.setItem("jwt",jwt1);
+                    localStorage.setItem("flag","true");
                 });
             }
             else{
-                let flag='false'
-                console.log(flag)
-                setreslut([flag,''])
+                localStorage.setItem("flag","false")
             }
         })
-        console.log("result ",result);
-        console.log("flag ",result[0]);
-            if (result[0] === 'false') {
+            if (localStorage.getItem("flag") === "false") {
                 alert('Enter correct credentials or register!!')
             }
 
             else {
-                console.log("jwt ",result[1])
-                // navigate('/success', { state: { userId: uid, userName: username }})
+                console.log("jwt ",localStorage.getItem("jwt"));
+                navigate('/success', { state: {userName: username }})
             }
         }
         else {
@@ -67,12 +61,12 @@ export default function DirectLogin() {
     //         })
     // }, [username]);
 let title=""
-if(location)
+if(localStorage.getItem("name")==='')
 {
     title="Welcome to tweet app, Login to view tweets from your friends";
 }
 else{
-    title=`Hey ${location.state.name}, You are successfully registered!! Please Login`;
+    title=`Hey ${localStorage.getItem("name")}, You are successfully registered!! Please Login`;
 }
     return (
         <div>

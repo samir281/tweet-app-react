@@ -8,7 +8,7 @@ const Home = (props) => {
     function handleRegister() {
         navigate('/register')
     }
-
+    localStorage.setItem("name","");
     function handleLogin() {
         navigate('/directlogin')
     }
