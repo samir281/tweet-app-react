@@ -70,18 +70,7 @@ export default function SuccessBody2(props) {
                 </Row>
             </Container>
             <Container className='p-4'>
-                <Row><Col>
-                    <Card id="card">
-                        <center>
-                            <Card.Title id="title" className="bg-secondary text-white">My Tweets</Card.Title>
-                        </center>
-                        <Card.Body>
-                            <center>
-                                <Button variant="secondary" onClick={handleMyTweets}><FaListUl size={50} /></Button>
-                            </center>
-                        </Card.Body>
-                    </Card>
-                </Col>
+                <Row> 
                     <Col>
                         <Card id="card">
                             <center>

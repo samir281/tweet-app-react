@@ -3,7 +3,6 @@ import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { FaStickyNote } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
-import { url } from './url'
 import MyTweets from "./MyTweets.js";
 let tweets = []
 const PostTweets = (props) => {
@@ -91,9 +90,7 @@ const PostTweets = (props) => {
                             </Form>
                         </Card>
                     </Col>
-                    <Col>
                     <MyTweets myTweets={myTweets}></MyTweets>
-                    </Col>
                 </Row>
             </Container>
         </div>
