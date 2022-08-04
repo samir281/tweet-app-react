@@ -6,6 +6,7 @@ import Registration from './component/Registration';
 import DirectLogin from './component/DirectLogin';
 import Success from './component/Success';
 import PostTweets from './component/PostTweets';
+import MyTweets from './component/MyTweets';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +26,7 @@ function App() {
         <Route path="/success" element={<Success />} />
 
         <Route path="/posttweets" element={<PostTweets />} />
+        <Route path="/mytweets" element={<MyTweets />} />
       </Routes>
     </Router>
   </div>

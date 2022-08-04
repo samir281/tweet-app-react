@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router";
 import SuccessBody from "./SuccessBody";
 import Menu from "./NavBar"
-
+import SuccessBody2 from "./SucessBody2";
 export default function Success() {
     const location = useLocation();
     let navigate = useNavigate()
@@ -13,7 +13,7 @@ export default function Success() {
     return (
         <div>
             <Menu/>
-            <SuccessBody props={{ state: { location } }} />
+            <SuccessBody2 props={{ state: { location } }} />
         </div>
     )
 }

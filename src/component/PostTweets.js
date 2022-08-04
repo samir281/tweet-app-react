@@ -4,17 +4,34 @@ import { FaStickyNote } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
 import { url } from './url'
-import Menu from './NavBar'
-
-const PostTweets = () => {
+import MyTweets from "./MyTweets.js";
+let tweets = []
+const PostTweets = (props) => {
     const [tweetContent, setTweetContent] = useState('')
+    let [myTweets, setMyTweets] = useState(tweets)
     let location = useLocation()
     let navigate = useNavigate()
     // console.log(location)
-
+    function fetchMyTweets() {
+        fetch(`username/${props.userName}`, {
+            method: 'GET',
+            headers: { 
+            "Content-Type": "application/json",
+            'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
+        },
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+                myTweets = data
+                setMyTweets(myTweets)
+            })
+    }
     const handlePost = (event) => {
         event.preventDefault()
-        if (location.state.userName === undefined) {
+        if (props.userName === undefined) {
             alert("Something went wrong , please login again")
             navigate('/')
         }
@@ -24,11 +41,12 @@ const PostTweets = () => {
             }
             else {
                 console.log(tweetContent)
-                fetch(`${url}/username/${location.state.userName}/add`, {
+                console.log(`Bearer ${localStorage.getItem("jwt")}`)
+                fetch(`username/${props.userName}/add`, {
                     method: 'POST',
                     headers: { 
-                    "Content-Type": "application/json" ,
-                    "Authorization":`${localStorage.getItem("jwt")}`
+                    'Content-Type': 'application/json' ,
+                    'Authorization':`Bearer ${localStorage.getItem("jwt")}`
                     },
                     body: JSON.stringify({
                         discription: tweetContent
@@ -36,10 +54,12 @@ const PostTweets = () => {
                 }).then((res) => {
                     if (res.status === 200) {
                         alert('posted ur tweet')
+                        fetchMyTweets();
+                        console.log(myTweets)
                         //navigate('/success', { state: { userName: location.state.userName, userId: location.state.userId } })
                     }
                     else {
-                        console.log(res)
+                        
                         alert('something went wrong')
                     }
                 })
@@ -49,11 +69,12 @@ const PostTweets = () => {
 
     useEffect(() => {
         console.log(location)
-    })
+        fetchMyTweets()
+        console.log(myTweets);
+    },[])
 
     return (
         <div>
-            <Menu />
             <Container>
                 <Row>
                     <Col>
@@ -69,6 +90,9 @@ const PostTweets = () => {
                                 </Form.Group>
                             </Form>
                         </Card>
+                    </Col>
+                    <Col>
+                    <MyTweets myTweets={myTweets}></MyTweets>
                     </Col>
                 </Row>
             </Container>

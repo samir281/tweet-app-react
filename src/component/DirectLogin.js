@@ -24,7 +24,7 @@ export default function DirectLogin() {
             if(response.status===200){
                 response.text().
                 then((body)=>{
-                    let jwt1='Bearer '+body;
+                    let jwt1=body;
                     localStorage.setItem("jwt",jwt1);
                     localStorage.setItem("flag","true");
                 });
