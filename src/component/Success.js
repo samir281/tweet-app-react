@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router";
-import SuccessBody from "./SuccessBody";
 import Menu from "./NavBar"
 import SuccessBody2 from "./SucessBody2";
 export default function Success() {

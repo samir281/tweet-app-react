@@ -3,31 +3,10 @@ import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { FaStickyNote } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
-import MyTweets from "./MyTweets.js";
-let tweets = []
+import SuccessBody2 from './SucessBody2.js';
 const PostTweets = (props) => {
     const [tweetContent, setTweetContent] = useState('')
-    let [myTweets, setMyTweets] = useState(tweets)
-    let location = useLocation()
-    let navigate = useNavigate()
-    // console.log(location)
-    function fetchMyTweets() {
-        fetch(`username/${props.userName}`, {
-            method: 'GET',
-            headers: { 
-            "Content-Type": "application/json",
-            'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
-        },
-        })
-            .then(res => {
-                return res.json()
-            })
-            .then(data => {
-                console.log(data)
-                myTweets = data
-                setMyTweets(myTweets)
-            })
-    }
+    let navigate = useNavigate();
     const handlePost = (event) => {
         event.preventDefault()
         if (props.userName === undefined) {
@@ -39,8 +18,6 @@ const PostTweets = (props) => {
                 alert("enter tweet content")
             }
             else {
-                console.log(tweetContent)
-                console.log(`Bearer ${localStorage.getItem("jwt")}`)
                 fetch(`username/${props.userName}/add`, {
                     method: 'POST',
                     headers: { 
@@ -53,12 +30,9 @@ const PostTweets = (props) => {
                 }).then((res) => {
                     if (res.status === 200) {
                         alert('posted ur tweet')
-                        fetchMyTweets();
-                        console.log(myTweets)
-                        //navigate('/success', { state: { userName: location.state.userName, userId: location.state.userId } })
+                        props.updateList();
                     }
                     else {
-                        
                         alert('something went wrong')
                     }
                 })
@@ -66,11 +40,7 @@ const PostTweets = (props) => {
         }
     }
 
-    useEffect(() => {
-        console.log(location)
-        fetchMyTweets()
-        console.log(myTweets);
-    },[])
+    
 
     return (
         <div>
@@ -90,7 +60,6 @@ const PostTweets = (props) => {
                             </Form>
                         </Card>
                     </Col>
-                    <MyTweets myTweets={myTweets}></MyTweets>
                 </Row>
             </Container>
         </div>
