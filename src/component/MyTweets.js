@@ -28,6 +28,10 @@ const MyTweets = (props) => {
     {
         navigate("/updateTweet",{state:{tweetId:TweetId,name:Name,updatelist:props.updateList(),tweetContent:TweetContent}})
     }
+    function onCommentHandler(tweetid)
+    {
+        
+    }
     return (
         <div>
             <div>
@@ -35,7 +39,7 @@ const MyTweets = (props) => {
                 <Container>
                     {props.myTweets.map(function (tweet, index) {
                         return (
-                            <MytweetList tweet={tweet} deletTweet={onDeletehandler} updateTweet={onUpdateHandler}></MytweetList>
+                            <MytweetList tweet={tweet} deletTweet={onDeletehandler} updateTweet={onUpdateHandler} showComment={onCommentHandler}></MytweetList>
                         )
                     })}
                 </Container>

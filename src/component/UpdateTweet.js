@@ -11,7 +11,7 @@ const UpdateTweet = () => {
     let index = useState()
     let [tweet, setTweet] = useState('')
     let [showUpdate, setShowUpdate] = useState(true)
-    const handleClose = () => setShowUpdate(false);
+    const handleClose = () => navigate('/success',{state:{userName:location.state.name}});
 
     function changeTweet() {
         index = location.state.tweetId
