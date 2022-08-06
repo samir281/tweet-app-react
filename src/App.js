@@ -8,6 +8,7 @@ import Success from './component/Success';
 import PostTweets from './component/PostTweets';
 import MyTweets from './component/MyTweets';
 import UpdateTweet from './component/UpdateTweet';
+import ForgotPassword from './component/ForgotPassword';
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,7 +23,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home register="false" />} />
         <Route path="/register" element={<Registration />} />
-
+        <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/directlogin" element={<DirectLogin />} />
         <Route path="/success" element={<Success />} />
         <Route path="/posttweets" element={<PostTweets />} />
