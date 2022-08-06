@@ -9,6 +9,7 @@ import PostTweets from './component/PostTweets';
 import MyTweets from './component/MyTweets';
 import UpdateTweet from './component/UpdateTweet';
 import ForgotPassword from './component/ForgotPassword';
+import ViewAllTweets from './component/ViewAllTweets';
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,6 +30,7 @@ function App() {
         <Route path="/posttweets" element={<PostTweets />} />
         <Route path="/mytweets" element={<MyTweets />} />
         <Route path="/updateTweet" element={<UpdateTweet/>}/>
+        <Route path="/ViewAllTweets" element={<ViewAllTweets></ViewAllTweets>}/>
       </Routes>
     </Router>
   </div>

@@ -7,13 +7,17 @@ import Box from '@mui/material/Box';
 const Menu = () => {
     const location = useLocation();
     let navigate = useNavigate()
-
     const handleBack = () => {
         navigate('/success', { state: { userName: location.state.userName, userId: location.state.userId } })
     }
 
     const handleIcon = () => {
         navigate('/')
+    }
+    function viewTweetHandler(e)
+    {
+        console.log("navLocation",location)
+        navigate('/ViewAllTweets',{state: { userName: location.state.userName,}})
     }
 
     return (
@@ -23,18 +27,7 @@ const Menu = () => {
                 Tweet App
             </Navbar.Brand>
             <Nav className="ms-auto">
-            <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          '& > *': {
-                            m: 1,
-                          },
-                        }}
-                      >
-            <Button >view all Tweets</Button>
-            </Box>
+            <Nav.Link onClick={viewTweetHandler}>View All Tweet</Nav.Link>
                 <Nav.Link onClick={handleBack}>Menu</Nav.Link>
                 <Nav.Link href='/'>Logout</Nav.Link>
             </Nav>
