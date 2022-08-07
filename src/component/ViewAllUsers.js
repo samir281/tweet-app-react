@@ -2,13 +2,15 @@ import { Modal } from "bootstrap";
 import { useEffect, useState } from "react"
 import { Card, Container, ModalBody, ModalHeader } from "react-bootstrap";
 import { FaUserSecret } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Menu from "./NavBar"
-let users=[]
+import { ShowUserList } from "./ShowUsersList";
 export function ViewAllUsers()
 {
-    let[usersList,setusersList]=useState(users)
+    let username=''
+    let[usersList,setusersList]=useState([])
     let location =useLocation();
+    let navigate=useNavigate();
     function fetchallUsers(){
         fetch(`getallusers`,{
             method: "GET",
@@ -25,6 +27,7 @@ export function ViewAllUsers()
     useEffect(()=>{
         fetchallUsers()
     },[])
+    console.log(usersList)
     return(
         <div>
         <Menu/>
@@ -33,17 +36,9 @@ export function ViewAllUsers()
         {
             usersList.map(function(user,index){
                 return(
-                    <Card>
-                    <Card.Body>
-                            <>
-                                <FaUserSecret className='m-1' />
-                                        <b>{user.username}</b>
-                            </>
-                            <Card.Text key={user.id}> FirstName {user.firstname}</Card.Text>
-                            <Card.Text key={index}>Lastname {user.lastname}</Card.Text>
-                    </Card.Body>
-                    </Card>
-                )}
+                <ShowUserList users={user}></ShowUserList>
+                )
+                }
             )
         }
         </Container>

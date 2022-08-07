@@ -32,7 +32,7 @@ function App() {
         <Route path="/mytweets" element={<MyTweets />} />
         <Route path="/updateTweet" element={<UpdateTweet/>}/>
         <Route path="/ViewAllTweets" element={<ViewAllTweets></ViewAllTweets>}/>
-        <Route path="/ViewAllUsers" element={<ViewAllUsers></ViewAllUsers>}/>
+        <Route path="/ViewAllUsers" element={<ViewAllUsers/>}/>
       </Routes>
     </Router>
   </div>
