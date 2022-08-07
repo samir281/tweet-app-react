@@ -19,7 +19,10 @@ const Menu = () => {
         console.log("navLocation",location)
         navigate('/ViewAllTweets',{state: { userName: location.state.userName,}})
     }
-
+    function viewUsersHandler(e)
+    {
+        navigate('/ViewAllUsers',{state:{userName:location.state.userName}})
+    }
     return (
         <div><Navbar className="bg-dark" variant='dark'>.
             <Navbar.Brand>
@@ -27,7 +30,8 @@ const Menu = () => {
                 Tweet App
             </Navbar.Brand>
             <Nav className="ms-auto">
-            <Nav.Link onClick={viewTweetHandler}>View All Tweet</Nav.Link>
+                <Nav.Link onClick={viewTweetHandler}>View All Tweet</Nav.Link>
+                <Nav.Link onClick={viewUsersHandler}>View All Users</Nav.Link>
                 <Nav.Link onClick={handleBack}>Menu</Nav.Link>
                 <Nav.Link href='/'>Logout</Nav.Link>
             </Nav>

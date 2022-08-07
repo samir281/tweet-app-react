@@ -20,6 +20,13 @@ const MytweetList = (props)=> {
   const location=useLocation();
   console.log("Location",location)
   const hideShowComment=()=>setShowComment(false);
+  let buttondiable=false
+    if(props.tweet.username===location.state.userName){
+      buttondiable= false;
+    }
+    else{
+      buttondiable= true;
+    }
     function DeletHandler(){
         console.log(props.tweet.id);
         props.deletTweet(props.tweet.username,props.tweet.id)
@@ -83,8 +90,8 @@ const MytweetList = (props)=> {
                         }}
                       >
                         <ButtonGroup variant="outlined" aria-label="outlined button group">
-                        <Button color='warning' onClick={DeletHandler}> <DeleteForeverIcon/></Button>
-                        <Button onClick={UpdateHandler} >Update your Tweet!! </Button>
+                        <Button color='warning' onClick={DeletHandler} disabled={buttondiable}> <DeleteForeverIcon/></Button>
+                        <Button onClick={UpdateHandler} disabled={buttondiable}>Update your Tweet!! </Button>
                         <Button onClick={CommentHandler} ><CommentRoundedIcon/></Button>
                         <Fab disabled aria-label="like">
                             <FavoriteIcon />
