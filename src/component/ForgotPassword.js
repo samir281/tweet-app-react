@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { FaTwitterSquare } from "react-icons/fa";
 import "../styles/ForgotPassword.css"
 import CommonHeader from './CommonHeader'
-import { url } from './url'
 
 export default function ForgotPassword() {
     const [userid, setUserId] = useState('')

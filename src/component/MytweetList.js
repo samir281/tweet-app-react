@@ -1,5 +1,4 @@
 import { FaUserSecret } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
 import {
   Container,
   Card,
@@ -34,18 +33,27 @@ const MytweetList = (props) => {
   console.log("Location", location);
   const hideShowComment = () => setShowComment(false);
   let buttondiable = false;
+  let today = new Date();
+  console.log(today.getDate());
+
   if (props.tweet.username === location.state.userName) {
     buttondiable = false;
   } else {
     buttondiable = true;
   }
+
+  //delete handlar
   function DeletHandler() {
     console.log(props.tweet.id);
     props.deletTweet(props.tweet.username, props.tweet.id);
   }
+
+  //update Handler
   function UpdateHandler() {
     props.updateTweet(props.tweet.username, props.tweet.id, props.tweet.descip);
   }
+
+  //CommentHandler
   function CommentHandler() {
     fetch(`getallreply/${props.tweet.id}`, {
       method: "GET",
@@ -61,6 +69,8 @@ const MytweetList = (props) => {
     setShowComment(true);
     console.log(comment);
   }
+
+  //replyHandler
   function replyHandler(e) {
     e.preventDefault();
     fetch(`${location.state.userName}/reply/${props.tweet.id}`, {
@@ -87,18 +97,16 @@ const MytweetList = (props) => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-    }).then((res)=>{
-      if(res.status===200)
-      {
+    }).then((res) => {
+      if (res.status === 200) {
         fetchallLikes();
         setlikeButon("error");
         setlikeDisable(true);
       }
-    })
+    });
   }
 
-
-  //Fetch All Like 
+  //Fetch All Like
   function fetchallLikes() {
     fetch(`getallLike/${props.tweet.id}`, {
       method: "GET",
@@ -120,52 +128,59 @@ const MytweetList = (props) => {
   return (
     <div>
       <Container>
-        <Card>
-          <Card.Body>
-            <>
-              <FaUserSecret className="m-1" />
-              <b>{props.tweet.username}</b>
-            </>
-            <Card.Text key={props.tweet.id}>{props.tweet.descip}</Card.Text>
-          </Card.Body>
-          <Card.Footer>Tweet Post Time :{props.tweet.date}</Card.Footer>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              "& > *": {
-                m: 1,
-              },
-            }}
-          >
-            <ButtonGroup variant="outlined" aria-label="outlined button group">
-              <Button
-                color="warning"
-                onClick={DeletHandler}
-                disabled={buttondiable}
+        <Row>
+          <Col>
+            <Card>
+              <Card.Header>
+                <FaUserSecret className="m-1" />
+                <b>{props.tweet.username}</b>
+              </Card.Header>
+              <Card.Body>
+                <Card.Text key={props.tweet.id}>{props.tweet.descip}</Card.Text>
+              </Card.Body>
+              <Card.Footer>Tweet Post Time : {props.tweet.date}</Card.Footer>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  "& > *": {
+                    m: 1,
+                  },
+                }}
               >
-                {" "}
-                <DeleteForeverIcon />
-              </Button>
-              <Button onClick={UpdateHandler} disabled={buttondiable}>
-                Update your Tweet!!{" "}
-              </Button>
-              <Button onClick={CommentHandler}>
-                <CommentRoundedIcon />
-              </Button>
-            </ButtonGroup>
-            <Fab
-              aria-label="like"
-              size="small"
-              onClick={handleLike}
-              disabled={likedisable}
-            >
-              <FavoriteIcon color={likeButton}></FavoriteIcon>
-              {likecount}
-            </Fab>
-          </Box>
-        </Card>
+                <ButtonGroup
+                  variant="outlined"
+                  aria-label="outlined button group"
+                >
+                  <Button
+                    color="warning"
+                    onClick={DeletHandler}
+                    disabled={buttondiable}
+                  >
+                    {" "}
+                    <DeleteForeverIcon />
+                  </Button>
+                  <Button onClick={UpdateHandler} disabled={buttondiable}>
+                    Update your Tweet!!{" "}
+                  </Button>
+                  <Button onClick={CommentHandler}>
+                    <CommentRoundedIcon />
+                  </Button>
+                </ButtonGroup>
+                <Fab
+                  aria-label="like"
+                  size="small"
+                  onClick={handleLike}
+                  disabled={likedisable}
+                >
+                  <FavoriteIcon color={likeButton}></FavoriteIcon>
+                  {likecount}
+                </Fab>
+              </Box>
+            </Card>
+          </Col>
+        </Row>
         <Modal show={showComment}>
           <ModalHeader>
             <Button onClick={hideShowComment}>

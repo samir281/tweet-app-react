@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import {  Col, Button, Form, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router'
-import SuccessHeader from './SuccessBody'
-import { url } from './url'
 
 const UpdateTweet = () => {
 
