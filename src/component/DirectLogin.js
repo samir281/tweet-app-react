@@ -19,26 +19,28 @@ export default function DirectLogin() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)
         }).then((response)=>{
+            console.log(response)
             if(response.status===200){
                 response.text().
                 then((body)=>{
                     let jwt1=body;
                     localStorage.setItem("jwt",jwt1);
-                    localStorage.setItem("flag","true");
+                    navigate('/success', { state: {userName: username }})
+                    // localStorage.setItem("flag","true");
                 });
             }
             else{
-                localStorage.setItem("flag","false")
+                 alert('Enter correct credentials or register!!')
             }
         })
-            if (localStorage.getItem("flag") === "false") {
-                alert('Enter correct credentials or register!!')
-            }
+            // if (localStorage.getItem("flag") === "false") {
+            //     alert('Enter correct credentials or register!!')
+            // }
 
-            else {
-                console.log("jwt ",localStorage.getItem("jwt"));
-                navigate('/success', { state: {userName: username }})
-            }
+            // else {
+            //     console.log("jwt ",localStorage.getItem("jwt"));
+            //     navigate('/success', { state: {userName: username }})
+            // }
         }
         else {
             alert("Enter your credentials")

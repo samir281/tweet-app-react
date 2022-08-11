@@ -35,8 +35,7 @@ const MytweetList = (props) => {
   let buttondiable = false;
   let today = new Date();
   console.log(today.getDate());
-
-  if (props.tweet.username === location.state.userName) {
+  if (location.pathname==='/success') {
     buttondiable = false;
   } else {
     buttondiable = true;
@@ -92,7 +91,7 @@ const MytweetList = (props) => {
   //Handle Like
   function handleLike(e) {
     e.preventDefault();
-    fetch(`${props.tweet.username}/like/${props.tweet.id}`, {
+    fetch(`${location.state.userName}/like/${props.tweet.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -108,7 +107,7 @@ const MytweetList = (props) => {
 
   //Fetch All Like
   function fetchallLikes() {
-    fetch(`getallLike/${props.tweet.id}`, {
+    fetch(`${location.state.userName}/getallLike/${props.tweet.id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -118,8 +117,15 @@ const MytweetList = (props) => {
         return res.json();
       })
       .then((data) => {
-        likecount = data;
+        likecount = data.count
         setlikecount(likecount);
+        console.log(location.state.userName)
+        console.log(data.userLiked)
+        if(data.userLiked)
+        {
+          setlikeButon("error");
+        }
+        setlikeDisable(data.userLiked);
       });
   }
   useEffect(() => {

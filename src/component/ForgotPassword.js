@@ -29,6 +29,11 @@ export default function ForgotPassword() {
             }).then((res) => {
                 if (res.status === 200)
                     navigate('/directlogin')
+                else{
+                    res.text().then((data)=>{
+                        alert(data)
+                    })
+                }
             })
         }
         else {

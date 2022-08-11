@@ -23,6 +23,10 @@ const Menu = () => {
     {
         navigate('/ViewAllUsers',{state:{userName:location.state.userName}})
     }
+    function resetPasswordHandler(e)
+    {
+        navigate('/forgot')
+    }
     return (
         <div><Navbar className="bg-dark" variant='dark'>.
             <Navbar.Brand>
@@ -32,6 +36,7 @@ const Menu = () => {
             <Nav className="ms-auto">
                 <Nav.Link onClick={viewTweetHandler}>View All Tweet</Nav.Link>
                 <Nav.Link onClick={viewUsersHandler}>View All Users</Nav.Link>
+                <Nav.Link onClick={resetPasswordHandler}>Reset Password</Nav.Link>
                 <Nav.Link onClick={handleBack}>Menu</Nav.Link>
                 <Nav.Link href='/'>Logout</Nav.Link>
             </Nav>

@@ -51,13 +51,15 @@ export default function Registration() {
         const newErrors = {}
         const emailregex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{1,})$/i;
         const nameregex = /^[aA-zZ\s]*$/
+        const phone=/^[0-9]/
         if (!firstname || firstname === '') newErrors.firstname = 'cannot be blank!'
         else if (nameregex.test(firstname) === false) newErrors.firstname = 'can contain only letters and spaces'
         if (!lastName || lastName === '') newErrors.lastName = 'cannot be blank!'
         else if (nameregex.test(lastName) === false) newErrors.lastName = 'can contain only letters and spaces'
         if (emailregex.test(username) === false) newErrors.email = "invalid email(should contain a '.' & '@')"
         if (!password || password === '') newErrors.password = 'cannot be blank'
-        //if(phoneNumber) newErrors.phoneNumber='cannot be blank'
+        if(phone.test(phoneNumber)===false) newErrors.phoneNumber='It can contain only Number'
+        else if(!phoneNumber || phoneNumber==='') newErrors.phoneNumber='cannot be blank!'
         return newErrors
     }
 
