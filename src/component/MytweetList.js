@@ -1,4 +1,4 @@
-import { FaUserSecret } from "react-icons/fa";
+import { FaMoneyCheck, FaUserSecret } from "react-icons/fa";
 import {
   Container,
   Card,
@@ -30,13 +30,22 @@ const MytweetList = (props) => {
   let [likedisable, setlikeDisable] = useState(false);
   let [likecount, setlikecount] = useState(0);
   const location = useLocation();
-  console.log("Location", location);
   const event = new Date(props.tweet.date);
-  const Day=event.toLocaleString('en-GB', { timeZone: 'UTC' });
+  let month=event.toLocaleString('en-US',{month:'long'})
+  let tweetdate=event.toLocaleString('en-US',{day:'2-digit'})
+  let year=event.getFullYear()
+  let todaydate=new Date();
+  let Day=""
+  if(todaydate.getDate()>tweetdate)
+  {
+    Day=todaydate.getDate()-tweetdate+" days Ago"
+  }
+  else{
+    Day="Todays Post";
+  }
   const hideShowComment = () => setShowComment(false);
   let buttondiable = false;
   let today = new Date();
-  console.log(today.getDate());
   if (location.pathname==='/success') {
     buttondiable = false;
   } else {
@@ -141,12 +150,12 @@ const MytweetList = (props) => {
             <Card>
               <Card.Header>
                 <FaUserSecret className="m-1" />
-                <b>{props.tweet.username}</b>
+                <b>{props.tweet.username} {event.getHours()}hr : {event.getMinutes()}mi</b>
               </Card.Header>
               <Card.Body>
                 <Card.Text key={props.tweet.id}>{props.tweet.descip}</Card.Text>
               </Card.Body>
-              <Card.Footer>Tweet Post Time : {Day}</Card.Footer>
+              <Card.Footer>Tweet Post Time : {Day} ({tweetdate} {month} {year})</Card.Footer>
               <Box
                 sx={{
                   display: "flex",
