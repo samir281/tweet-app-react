@@ -31,6 +31,8 @@ const MytweetList = (props) => {
   let [likecount, setlikecount] = useState(0);
   const location = useLocation();
   console.log("Location", location);
+  const event = new Date(props.tweet.date);
+  const Day=event.toLocaleString('en-GB', { timeZone: 'UTC' });
   const hideShowComment = () => setShowComment(false);
   let buttondiable = false;
   let today = new Date();
@@ -144,7 +146,7 @@ const MytweetList = (props) => {
               <Card.Body>
                 <Card.Text key={props.tweet.id}>{props.tweet.descip}</Card.Text>
               </Card.Body>
-              <Card.Footer>Tweet Post Time : {props.tweet.date}</Card.Footer>
+              <Card.Footer>Tweet Post Time : {Day}</Card.Footer>
               <Box
                 sx={{
                   display: "flex",
