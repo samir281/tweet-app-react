@@ -1,5 +1,6 @@
 import { Container}from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { url } from "./Url";
 import MytweetList from "./MytweetList";
 let tweets = []
 let dummy = []
@@ -10,7 +11,7 @@ const MyTweets = (props) => {
         console.log(name);
         console.log(tweetid);
         let form={name,tweetid}
-        fetch(`${name}/delete/${tweetid}`,{
+        fetch(`${url}/${name}/delete/${tweetid}`,{
         method: 'DELETE',
         headers: { 
         'Authorization':`Bearer ${localStorage.getItem("jwt")}` 

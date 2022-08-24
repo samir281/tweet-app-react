@@ -3,6 +3,7 @@ import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { FaStickyNote } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
+import { url } from './Url.js';
 import SuccessBody2 from './SucessBody2.js';
 const PostTweets = (props) => {
     const [tweetContent, setTweetContent] = useState('')
@@ -18,7 +19,6 @@ const PostTweets = (props) => {
                 alert("enter tweet content")
             }
             else {
-                let url='http://localhost:5000/api/v1.0/tweets'
                 fetch(`${url}/username/${props.userName}/add`, {
                     method: 'POST',
                     headers: { 

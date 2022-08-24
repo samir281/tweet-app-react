@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {  Col, Button, Form, Modal, ModalBody, ModalHeader, ModalFooter, ModalTitle } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router'
-
+import { url } from './Url';
 const UpdateTweet = () => {
 
     let navigate = useNavigate()
@@ -15,7 +15,7 @@ const UpdateTweet = () => {
         index = location.state.tweetId
         console.log(index)
         if(tweet!==''){
-        fetch(`${location.state.name}/update/${index}`, {
+        fetch(`${url}/${location.state.name}/update/${index}`, {
             method: 'PUT',
             headers: {
                 'Authorization':`Bearer ${localStorage.getItem("jwt")}`,

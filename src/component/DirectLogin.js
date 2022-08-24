@@ -3,7 +3,7 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate ,useLocation} from "react-router"
 import Header from "./Header"
 import "../styles/Login.css"
-
+import { url } from "./Url"
 export default function DirectLogin() {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
@@ -14,7 +14,6 @@ export default function DirectLogin() {
         if(username!=='')
         {
         let form={username,password}
-        let url='http://localhost:5000/api/v1.0/tweets'
         fetch(`${url}/login`,{
             method: 'POST',
             headers: { "Content-Type": "application/json" },

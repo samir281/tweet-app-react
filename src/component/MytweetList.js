@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "react-bootstrap";
+import { url } from "./Url";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
@@ -65,7 +66,7 @@ const MytweetList = (props) => {
 
   //CommentHandler
   function CommentHandler() {
-    fetch(`getallreply/${props.tweet.id}`, {
+    fetch(`${url}/getallreply/${props.tweet.id}`, {
       method: "GET",
     })
       .then((res) => {
@@ -83,7 +84,7 @@ const MytweetList = (props) => {
   //replyHandler
   function replyHandler(e) {
     e.preventDefault();
-    fetch(`${location.state.userName}/reply/${props.tweet.id}`, {
+    fetch(`${url}/${location.state.userName}/reply/${props.tweet.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +103,7 @@ const MytweetList = (props) => {
   //Handle Like
   function handleLike(e) {
     e.preventDefault();
-    fetch(`${location.state.userName}/like/${props.tweet.id}`, {
+    fetch(`${url}/${location.state.userName}/like/${props.tweet.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -118,7 +119,7 @@ const MytweetList = (props) => {
 
   //Fetch All Like
   function fetchallLikes() {
-    fetch(`${location.state.userName}/getallLike/${props.tweet.id}`, {
+    fetch(`${url}/${location.state.userName}/getallLike/${props.tweet.id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,

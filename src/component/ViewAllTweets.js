@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import MytweetList from "./MytweetList";
 import { useLocation } from "react-router-dom";
+import { url } from "./Url";
 import Menu from "./NavBar"
 let tweets = [];
 export default function ViewAllTweets() {
@@ -9,7 +10,7 @@ export default function ViewAllTweets() {
   const location=useLocation();
   console.log("viewlocation",location)
   function fetchallTweet() {
-    fetch(`all`, {
+    fetch(`${url}/all`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -26,7 +27,6 @@ export default function ViewAllTweets() {
       });
   }
   function onDeletehandler(){
-    console.log("kya bhai kyu tang kr raha hai ")
   }
   function onUpdateHandler(){}
   function onCommentHandler(){}

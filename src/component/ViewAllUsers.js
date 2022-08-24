@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Card, Container, ModalBody, ModalHeader } from "react-bootstrap";
 import { FaUserSecret } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { url } from "./Url";
 import Menu from "./NavBar"
 import { ShowUserList } from "./ShowUsersList";
 export function ViewAllUsers()
@@ -12,7 +13,7 @@ export function ViewAllUsers()
     let location =useLocation();
     let navigate=useNavigate();
     function fetchallUsers(){
-        fetch(`getallusers`,{
+        fetch(`${url}/getallusers`,{
             method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
