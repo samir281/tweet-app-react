@@ -12,7 +12,8 @@ export default function SuccessBody2(props) {
     let navigate = useNavigate();
     console.log(location)
     function fetchMyTweets() {
-        fetch(`username/${location.state.userName}`, {
+        let url='http://localhost:5000/api/v1.0/tweets'
+        fetch(`${url}/username/${location.state.userName}`, {
             method: 'GET',
             headers: { 
             'Authorization':`Bearer ${localStorage.getItem("jwt")}` 

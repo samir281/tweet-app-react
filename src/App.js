@@ -12,7 +12,7 @@ import ForgotPassword from './component/ForgotPassword';
 import ViewAllTweets from './component/ViewAllTweets';
 import { ViewAllUsers } from './component/ViewAllUsers';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
@@ -40,3 +40,6 @@ function App() {
 }
 
 export default App;
+
+
+// "proxy": "http://tweetapplication-env.eba-5smavibf.us-west-2.elasticbeanstalk.com/api/v1.0/tweets/"

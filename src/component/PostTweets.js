@@ -18,7 +18,8 @@ const PostTweets = (props) => {
                 alert("enter tweet content")
             }
             else {
-                fetch(`username/${props.userName}/add`, {
+                let url='http://localhost:5000/api/v1.0/tweets'
+                fetch(`${url}/username/${props.userName}/add`, {
                     method: 'POST',
                     headers: { 
                     'Content-Type': 'application/json' ,

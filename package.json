@@ -2,7 +2,9 @@
   "name": "react-tweet-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://tweetapplication-env.eba-5smavibf.us-west-2.elasticbeanstalk.com/api/v1.0/tweets/",
+  "homepage": ".",
+  
+  
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",

@@ -31,7 +31,7 @@ export default function Registration() {
 
             console.log(form.firstname)
             console.log(JSON.stringify(form))
-            fetch(`/signup`, {
+            fetch(`http://localhost:5000/api/v1.0/tweets/signup`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
