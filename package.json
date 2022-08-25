@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
-  
+  "proxy":"http://Tweetapplication2-env.eba-egnkuzwj.us-west-2.elasticbeanstalk.com/api/v1.0/tweets",
   
   "dependencies": {
     "@emotion/react": "^11.10.0",

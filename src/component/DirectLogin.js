@@ -14,7 +14,7 @@ export default function DirectLogin() {
         if(username!=='')
         {
         let form={username,password}
-        fetch(`${url}/login`,{
+        fetch(`/login`,{
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)
