@@ -1,1 +1,1 @@
-export const url='http://Tweetapplication2-env.eba-egnkuzwj.us-west-2.elasticbeanstalk.com/api/v1.0/tweets'
+export const url='http://tweetapplication-env.eba-5smavibf.us-west-2.elasticbeanstalk.com/api/v1.0/tweets'
