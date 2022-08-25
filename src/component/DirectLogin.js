@@ -11,6 +11,7 @@ export default function DirectLogin() {
     const handleSubmit = (e) => {
         e.preventDefault()
         let uid = ''
+        console.log(username)
         if(username!=='')
         {
         let form={username,password}
@@ -70,6 +71,7 @@ else{
 }
     return (
         <div>
+            
             <Header />
             <Container>
                 <h4 className="LoginHeader">{title}</h4>
@@ -88,6 +90,7 @@ else{
                     </div>
                 </Form>
             </Container>
+            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
         </div>
     )
 }
