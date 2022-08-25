@@ -90,7 +90,7 @@ else{
                     </div>
                 </Form>
             </Container>
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
+            
         </div>
     )
 }
