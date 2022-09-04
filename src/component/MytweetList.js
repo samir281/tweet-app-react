@@ -75,6 +75,7 @@ const MytweetList = (props) => {
       })
       .then((data) => {
         comment = data;
+     
         setComments(comment);
       });
     setShowComment(true);
@@ -168,7 +169,7 @@ const MytweetList = (props) => {
                 }}
               >
                 <ButtonGroup
-                  variant="outlined"
+                  variant="outlined"  
                   aria-label="outlined button group"
                 >
                   <Button
@@ -218,7 +219,7 @@ const MytweetList = (props) => {
                 <tr>
                   <td>{reply.userName}</td>
                   <td>{reply.reply}</td>
-                  <td>{reply.date}</td>
+                  <td>{reply.date[0]+"/"+reply.date[1]+"/"+reply.date[2]}</td>
                 </tr>
               ))}
             </Table>

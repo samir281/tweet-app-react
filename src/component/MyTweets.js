@@ -6,6 +6,7 @@ let tweets = []
 let dummy = []
 const MyTweets = (props) => {
     let navigate=useNavigate();
+    //Delete Handler
     function onDeletehandler(name,tweetid)
     {
         console.log(name);
