@@ -5,7 +5,6 @@ import './../styles/SuccessBody.css'
 import PostTweets from "./PostTweets";
 import MyTweets from "./MyTweets";
 import { url } from "./Url";
-import './../styles/Text.css';
 let tweets = []
 export default function SuccessBody2(props) {
     let [myTweets, setMyTweets] = useState(tweets)
@@ -20,12 +19,17 @@ export default function SuccessBody2(props) {
         },
         })
             .then(res => {
-                return res.json()
-            })
-            .then(data => {
-                console.log(data)
-                myTweets = data
-                setMyTweets(myTweets)
+                if(res.status===404)
+                {
+                    setMyTweets([])
+                }
+                else{
+                return res.json().then(data => {
+                    console.log(data)
+                    myTweets = data
+                    setMyTweets(myTweets)
+                })
+                }
             })
     }
     useEffect(() => {

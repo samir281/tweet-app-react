@@ -18,15 +18,19 @@ export function ShowUserList(props){
         })
             .then(res => {
                 console.log(res)
-                return res.json()
-            }).catch(err=>{
-                console.log(err)
-            })
-            .then(data => {
-                console.log(data)
-                listTweet = data
-                setlistTweet(listTweet)
-                console.log(listTweet)
+                if(res.status===404){
+                    alert("NO TWEETS FOUND");
+                }
+                else{
+                    console.log("hello");
+                return res.json().then(data => {
+                    console.log(data)
+                    listTweet = data
+                    setlistTweet(listTweet)
+                    setshowTweet(true);
+                    console.log(listTweet)
+                })
+            }
             })
             console.log(listTweet)
     }
@@ -36,15 +40,12 @@ export function ShowUserList(props){
     {
         e.preventDefault()
         fetchMyTweets();
-        setshowTweet(true);
     }
     function hideShowComment(e)
     {
         setshowTweet(false);
     }
-    function onDeletehandler(){
-        console.log("kya bhai kyu tang kr raha hai ")
-      }
+    function onDeletehandler(){}
       function onUpdateHandler(){}
       function onCommentHandler(){}
     console.log(props.users)
