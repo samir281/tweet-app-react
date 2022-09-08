@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 const Menu = () => {
     const location = useLocation();
     let navigate = useNavigate()
+    const handleBack = () => {
+        navigate('/success', { state: { userName: location.state.userName, userId: location.state.userId } })
+    }
 
     const handleIcon = () => {
         navigate('/success', { state: { userName: location.state.userName, userId: location.state.userId } })
@@ -34,6 +37,7 @@ const Menu = () => {
                 <Nav.Link onClick={viewTweetHandler}>View All Tweet</Nav.Link>
                 <Nav.Link onClick={viewUsersHandler}>View All Users</Nav.Link>
                 <Nav.Link onClick={resetPasswordHandler}>Reset Password</Nav.Link>
+                <Nav.Link onClick={handleBack}>Menu</Nav.Link>
                 <Nav.Link href='/'>Logout</Nav.Link>
             </Nav>
         </Navbar></div>
